@@ -5,12 +5,15 @@ from PIL import Image
 
 
 def set_folder(folder):
+  # If user input is a valid directory, pass folder to list processor.  Otherwise return "Folder not found" 
   if os.path.isdir(folder):
     list_files(os.path.join(os.getcwd(), folder))
   else:
     print("Folder not found")
 
 def list_files(path):
+  # Generate a list of file and folders within the directory from user.  Files are converted to jpg if they are image files.
+  # Folders are passed back to same function recursively to scan for more files and folders.
   files = os.listdir(path)
   for file in files:
     if os.path.isdir(os.path.join(path, file)):
